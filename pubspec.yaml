@@ -1,0 +1,19 @@
+name: sanwo_flutter
+description: Sanwo payment SDK for Flutter — one interface for every payment provider
+version: 0.1.0
+homepage: https://github.com/Sanwohq/flutter
+repository: https://github.com/Sanwohq/flutter
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: '>=3.10.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.10.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
