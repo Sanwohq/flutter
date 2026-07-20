@@ -1,0 +1,11 @@
+name: sanwo_razorpay
+description: Razorpay provider for the Sanwo payment SDK
+version: 0.1.0
+homepage: https://github.com/Sanwohq/flutter
+repository: https://github.com/Sanwohq/flutter
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  sanwo_flutter: ^0.1.0

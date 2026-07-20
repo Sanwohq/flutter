@@ -2,6 +2,9 @@ library sanwo_paystack;
 
 import 'package:sanwo_flutter/sanwo_flutter.dart';
 
+/// Paystack provider for Sanwo.
+///
+/// Auto-generated from @sanwohq/paystack — do not edit manually.
 final paystackProvider = SanwoProviderDefinition(
   id: 'paystack',
   name: 'paystack',
@@ -12,7 +15,7 @@ final paystackProvider = SanwoProviderDefinition(
   supportedCountries: ['NG', 'GH', 'ZA', 'US', 'KE'],
 );
 
-const _template = '''<!DOCTYPE html>
+const _template = r'''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -23,7 +26,9 @@ const _template = '''<!DOCTYPE html>
   <script src="https://js.paystack.co/v2/inline.js"></script>
   <script>
     {{sanwoBridge}}
+
     var params = {{params}};
+
     function initPayment() {
       try {
         var paystack = new PaystackPop();
@@ -40,9 +45,14 @@ const _template = '''<!DOCTYPE html>
               raw: response
             });
           },
-          onCancel: function() { sanwoCallback('cancelled', {}); },
-          onClose: function() { sanwoCallback('closed', {}); }
+          onCancel: function() {
+            sanwoCallback('cancelled', {});
+          },
+          onClose: function() {
+            sanwoCallback('closed', {});
+          }
         };
+
         if (params.reference) config.ref = params.reference;
         if (params.channels) config.channels = params.channels;
         if (params.metadata) config.metadata = params.metadata;
@@ -57,6 +67,7 @@ const _template = '''<!DOCTYPE html>
         if (params.split) config.split = params.split;
         if (params.transactionCharge) config.transaction_charge = params.transactionCharge;
         if (params.invoiceLimit) config.invoice_limit = params.invoiceLimit;
+
         sanwoCallback('loaded', {});
         var method = params.method || 'checkout';
         paystack[method](config);

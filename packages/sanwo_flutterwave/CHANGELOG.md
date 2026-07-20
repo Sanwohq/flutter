@@ -1,3 +1,3 @@
 ## 0.1.0
 
-- Initial release with Flutterwave provider definition.
+- Initial release of sanwo_flutterwave
