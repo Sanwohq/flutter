@@ -7,9 +7,10 @@
 ///
 /// ```dart
 /// import 'package:sanwo_flutter/sanwo_flutter.dart';
+/// import 'package:sanwo_paystack/sanwo_paystack.dart';
 ///
 /// final sanwo = Sanwo(
-///   provider: SanwoProviders.paystack,
+///   provider: paystackProvider,
 ///   publicKey: 'pk_test_...',
 /// );
 ///
@@ -33,5 +34,4 @@ export 'src/checkout_options.dart' show CheckoutOptions, CheckoutCustomer;
 export 'src/checkout_result.dart' show CheckoutResult, CheckoutStatus;
 export 'src/event.dart' show SanwoEvent, SanwoEventData, SanwoEventCallback;
 export 'src/provider.dart' show SanwoProviderDefinition;
-export 'src/providers.dart' show SanwoProviders;
 export 'src/engine.dart' show SanwoEngine;

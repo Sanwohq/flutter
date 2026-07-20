@@ -14,7 +14,7 @@ import 'provider.dart';
 ///
 /// ```dart
 /// final sanwo = Sanwo(
-///   provider: SanwoProviders.paystack,
+///   provider: paystackProvider,
 ///   publicKey: 'pk_test_...',
 /// );
 ///

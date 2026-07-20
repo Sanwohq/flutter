@@ -4,11 +4,12 @@ Sanwo payment SDK for Flutter — one interface for every payment provider.
 
 ## Installation
 
-Add `sanwo_flutter` to your `pubspec.yaml`:
+Add `sanwo_flutter` and a provider package to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   sanwo_flutter: ^0.1.0
+  sanwo_paystack: ^0.1.0   # or sanwo_flutterwave
 ```
 
 Then run:
@@ -45,10 +46,11 @@ No additional setup required.
 
 ```dart
 import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_paystack/sanwo_paystack.dart';
 
 // Create an instance with your provider and public key
 final sanwo = Sanwo(
-  provider: SanwoProviders.paystack,
+  provider: paystackProvider,
   publicKey: 'pk_test_...',
 );
 
@@ -79,18 +81,23 @@ if (result.status == CheckoutStatus.successful) {
 }
 ```
 
-## Supported Providers
+## Provider Packages
 
-| Provider     | ID             | Amount Unit  |
-|-------------|----------------|--------------|
-| Paystack    | `paystack`     | Minor (kobo) |
-| Flutterwave | `flutterwave`  | Major (naira) — auto-converted |
+Provider templates are distributed as separate packages to keep the core SDK lightweight. Install only the providers you need.
+
+| Package              | Provider     | Amount Unit                       |
+|---------------------|--------------|-----------------------------------|
+| `sanwo_paystack`    | Paystack     | Minor (kobo)                      |
+| `sanwo_flutterwave` | Flutterwave  | Major (naira) — auto-converted    |
 
 ### Paystack
 
 ```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_paystack/sanwo_paystack.dart';
+
 final sanwo = Sanwo(
-  provider: SanwoProviders.paystack,
+  provider: paystackProvider,
   publicKey: 'pk_test_...',
 );
 
@@ -113,8 +120,11 @@ final result = await sanwo.checkout(
 ### Flutterwave
 
 ```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_flutterwave/sanwo_flutterwave.dart';
+
 final sanwo = Sanwo(
-  provider: SanwoProviders.flutterwave,
+  provider: flutterwaveProvider,
   publicKey: 'FLWPUBK_TEST-...',
 );
 

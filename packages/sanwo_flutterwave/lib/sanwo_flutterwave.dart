@@ -1,9 +1,43 @@
-/// Flutterwave payment provider HTML template.
-///
-/// Contains `{{sanwoBridge}}` and `{{params}}` placeholders that are
-/// replaced at runtime by the Sanwo engine.
-const String flutterwaveTemplate = '''
-<!DOCTYPE html>
+library sanwo_flutterwave;
+
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+
+final flutterwaveProvider = SanwoProviderDefinition(
+  id: 'flutterwave',
+  name: 'flutterwave',
+  displayName: 'Flutterwave',
+  template: _template,
+  amountInMinorUnit: false,
+  supportedCurrencies: [
+    'NGN',
+    'GHS',
+    'KES',
+    'ZAR',
+    'USD',
+    'GBP',
+    'EUR',
+    'TZS',
+    'UGX',
+    'RWF',
+    'XAF',
+    'XOF',
+  ],
+  supportedCountries: [
+    'NG',
+    'GH',
+    'KE',
+    'ZA',
+    'US',
+    'GB',
+    'TZ',
+    'UG',
+    'RW',
+    'CM',
+    'SN',
+  ],
+);
+
+const _template = '''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -54,5 +88,4 @@ const String flutterwaveTemplate = '''
     }
   </script>
 </body>
-</html>
-''';
+</html>''';

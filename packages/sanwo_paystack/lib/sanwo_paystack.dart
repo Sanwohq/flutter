@@ -1,9 +1,18 @@
-/// Paystack payment provider HTML template.
-///
-/// Contains `{{sanwoBridge}}` and `{{params}}` placeholders that are
-/// replaced at runtime by the Sanwo engine.
-const String paystackTemplate = '''
-<!DOCTYPE html>
+library sanwo_paystack;
+
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+
+final paystackProvider = SanwoProviderDefinition(
+  id: 'paystack',
+  name: 'paystack',
+  displayName: 'Paystack',
+  template: _template,
+  amountInMinorUnit: true,
+  supportedCurrencies: ['NGN', 'GHS', 'ZAR', 'USD', 'KES'],
+  supportedCountries: ['NG', 'GH', 'ZA', 'US', 'KE'],
+);
+
+const _template = '''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -57,5 +66,4 @@ const String paystackTemplate = '''
     }
   </script>
 </body>
-</html>
-''';
+</html>''';

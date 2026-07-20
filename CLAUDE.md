@@ -4,7 +4,11 @@
 Sanwo Flutter is the Flutter/Dart SDK for Sanwo, a universal payment SDK. It provides a single interface for multiple payment providers (Paystack, Flutterwave).
 
 ## Architecture
-- Provider templates are bundled as Dart string constants in `lib/src/templates/`
+- The core SDK (`sanwo_flutter`) contains the engine, checkout flow, and `SanwoProviderDefinition` type
+- Provider templates are distributed as separate packages under `packages/`:
+  - `packages/sanwo_paystack/` — Paystack provider
+  - `packages/sanwo_flutterwave/` — Flutterwave provider
+- Each provider package exports a top-level `SanwoProviderDefinition` instance (e.g., `paystackProvider`)
 - The engine (`lib/src/engine.dart`) renders templates by replacing `{{sanwoBridge}}` and `{{params}}` placeholders
 - `checkout_page.dart` hosts a WebView that loads the rendered HTML
 - A JavascriptChannel named `messageHandler` receives messages from the JS bridge
@@ -22,7 +26,8 @@ Sanwo Flutter is the Flutter/Dart SDK for Sanwo, a universal payment SDK. It pro
 - Amounts are always in minor units at the API level; the engine converts for providers that need major units
 
 ## Adding a Provider
-1. Create template in `lib/src/templates/<provider>.dart`
-2. Add `SanwoProviderDefinition` in `lib/src/providers.dart`
-3. Template must use `{{sanwoBridge}}` and `{{params}}` placeholders
-4. Template must call `sanwoCallback(event, data)` for events
+1. Create a new package under `packages/sanwo_<provider>/`
+2. Add a `pubspec.yaml` with a dependency on `sanwo_flutter`
+3. Export a `SanwoProviderDefinition` instance from `lib/sanwo_<provider>.dart`
+4. Template must use `{{sanwoBridge}}` and `{{params}}` placeholders
+5. Template must call `sanwoCallback(event, data)` for events
