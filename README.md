@@ -60,7 +60,7 @@ sanwo.on(SanwoEvent.success, (event) {
 });
 
 // Start checkout from a button handler
-final result = await sanwo.checkout(
+final result = await sanwo(
   context: context,
   options: CheckoutOptions(
     amount: 500000, // 5000 NGN in kobo
@@ -101,7 +101,7 @@ final sanwo = Sanwo(
   publicKey: 'pk_test_...',
 );
 
-final result = await sanwo.checkout(
+final result = await sanwo(
   context: context,
   options: CheckoutOptions(
     amount: 500000, // 5000 NGN in kobo
@@ -128,7 +128,7 @@ final sanwo = Sanwo(
   publicKey: 'FLWPUBK_TEST-...',
 );
 
-final result = await sanwo.checkout(
+final result = await sanwo(
   context: context,
   options: CheckoutOptions(
     amount: 500000, // 5000 NGN in kobo — auto-converted to 5000 naira
@@ -171,7 +171,7 @@ sanwo.on(SanwoEvent.closed, (data) => print('Closed'));
 
 ## CheckoutResult
 
-The `checkout` method returns a `CheckoutResult` with:
+Calling the `Sanwo` instance returns a `CheckoutResult` with:
 
 | Property        | Type             | Description                    |
 |----------------|------------------|--------------------------------|

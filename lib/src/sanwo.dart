@@ -9,8 +9,8 @@ import 'provider.dart';
 
 /// The main Sanwo payment SDK entry point.
 ///
-/// Create an instance with a provider and public key, then call [checkout]
-/// to start a payment flow.
+/// Create an instance with a provider and public key, then call the instance
+/// directly to start a payment flow.
 ///
 /// ```dart
 /// final sanwo = Sanwo(
@@ -18,7 +18,7 @@ import 'provider.dart';
 ///   publicKey: 'pk_test_...',
 /// );
 ///
-/// final result = await sanwo.checkout(
+/// final result = await sanwo(
 ///   context: context,
 ///   options: CheckoutOptions(
 ///     amount: 500000,
@@ -75,7 +75,7 @@ class Sanwo {
   /// [options] configures the checkout (amount, currency, customer, etc.).
   ///
   /// ```dart
-  /// final result = await sanwo.checkout(
+  /// final result = await sanwo(
   ///   context: context,
   ///   options: CheckoutOptions(
   ///     amount: 500000,
@@ -88,7 +88,7 @@ class Sanwo {
   ///   print('Paid! Ref: ${result.reference}');
   /// }
   /// ```
-  Future<CheckoutResult> checkout({
+  Future<CheckoutResult> call({
     required BuildContext context,
     required CheckoutOptions options,
   }) async {

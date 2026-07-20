@@ -14,7 +14,7 @@
 ///   publicKey: 'pk_test_...',
 /// );
 ///
-/// final result = await sanwo.checkout(
+/// final result = await sanwo(
 ///   context: context,
 ///   options: CheckoutOptions(
 ///     amount: 500000,
