@@ -88,7 +88,12 @@ Provider templates are distributed as separate packages to keep the core SDK lig
 | Package              | Provider     | Amount Unit                       |
 |---------------------|--------------|-----------------------------------|
 | `sanwo_paystack`    | Paystack     | Minor (kobo)                      |
-| `sanwo_flutterwave` | Flutterwave  | Major (naira) — auto-converted    |
+| `sanwo_flutterwave` | Flutterwave  | Major (naira) -- auto-converted   |
+| `sanwo_stripe`      | Stripe       | Minor (cents)                     |
+| `sanwo_paypal`      | PayPal       | Major (dollars) -- auto-converted |
+| `sanwo_razorpay`    | Razorpay     | Minor (paise)                     |
+| `sanwo_monnify`     | Monnify      | Major (naira) -- auto-converted   |
+| `sanwo_interswitch` | Interswitch  | Minor (kobo)                      |
 
 ### Paystack
 
@@ -131,7 +136,7 @@ final sanwo = Sanwo(
 final result = await sanwo(
   context: context,
   options: CheckoutOptions(
-    amount: 500000, // 5000 NGN in kobo — auto-converted to 5000 naira
+    amount: 500000, // 5000 NGN in kobo -- auto-converted to 5000 naira
     currency: 'NGN',
     customer: CheckoutCustomer(
       email: 'user@example.com',
@@ -143,6 +148,121 @@ final result = await sanwo(
       'title': 'My Store',
       'logo': 'https://example.com/logo.png',
     },
+  ),
+);
+```
+
+### Stripe
+
+```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_stripe/sanwo_stripe.dart';
+
+final sanwo = Sanwo(
+  provider: stripeProvider,
+  publicKey: 'pk_test_...',
+);
+
+final result = await sanwo(
+  context: context,
+  options: CheckoutOptions(
+    amount: 5000, // $50.00 in cents
+    currency: 'USD',
+    customer: CheckoutCustomer(email: 'user@example.com'),
+    clientSecret: 'pi_xxx_secret_yyy', // from your server
+  ),
+);
+```
+
+### PayPal
+
+```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_paypal/sanwo_paypal.dart';
+
+final sanwo = Sanwo(
+  provider: paypalProvider,
+  publicKey: 'YOUR_PAYPAL_CLIENT_ID',
+);
+
+final result = await sanwo(
+  context: context,
+  options: CheckoutOptions(
+    amount: 5000, // $50.00 in cents -- auto-converted to 50.00
+    currency: 'USD',
+    customer: CheckoutCustomer(email: 'user@example.com'),
+  ),
+);
+```
+
+### Razorpay
+
+```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_razorpay/sanwo_razorpay.dart';
+
+final sanwo = Sanwo(
+  provider: razorpayProvider,
+  publicKey: 'rzp_test_...',
+);
+
+final result = await sanwo(
+  context: context,
+  options: CheckoutOptions(
+    amount: 50000, // 500 INR in paise
+    currency: 'INR',
+    customer: CheckoutCustomer(
+      email: 'user@example.com',
+      name: 'John Doe',
+    ),
+  ),
+);
+```
+
+### Monnify
+
+```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_monnify/sanwo_monnify.dart';
+
+final sanwo = Sanwo(
+  provider: monnifyProvider,
+  publicKey: 'MK_TEST_...',
+);
+
+final result = await sanwo(
+  context: context,
+  options: CheckoutOptions(
+    amount: 500000, // 5000 NGN in kobo -- auto-converted to 5000 naira
+    currency: 'NGN',
+    customer: CheckoutCustomer(
+      email: 'user@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+    ),
+    contractCode: 'YOUR_CONTRACT_CODE',
+  ),
+);
+```
+
+### Interswitch
+
+```dart
+import 'package:sanwo_flutter/sanwo_flutter.dart';
+import 'package:sanwo_interswitch/sanwo_interswitch.dart';
+
+final sanwo = Sanwo(
+  provider: interswitchProvider,
+  publicKey: 'YOUR_MERCHANT_CODE',
+);
+
+final result = await sanwo(
+  context: context,
+  options: CheckoutOptions(
+    amount: 500000, // 5000 NGN in kobo
+    currency: 'NGN',
+    customer: CheckoutCustomer(email: 'user@example.com'),
+    payItemId: 'Default_Payable_MX12345',
   ),
 );
 ```

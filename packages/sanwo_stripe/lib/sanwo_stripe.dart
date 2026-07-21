@@ -147,6 +147,8 @@ const _template = r'''<!DOCTYPE html>
                   var paymentIntent = result.paymentIntent || result.setupIntent;
                   sanwoCallback('success', {
                     id: paymentIntent.id,
+                    reference: paymentIntent.id,
+                    transaction_id: paymentIntent.id,
                     status: paymentIntent.status,
                     raw: paymentIntent
                   });

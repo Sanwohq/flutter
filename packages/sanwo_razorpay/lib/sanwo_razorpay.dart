@@ -47,6 +47,8 @@ const _template = r'''<!DOCTYPE html>
           prefill: prefill,
           handler: function(response) {
             sanwoCallback('success', {
+              reference: response.razorpay_payment_id,
+              transaction_id: response.razorpay_payment_id,
               paymentId: response.razorpay_payment_id,
               orderId: response.razorpay_order_id,
               signature: response.razorpay_signature

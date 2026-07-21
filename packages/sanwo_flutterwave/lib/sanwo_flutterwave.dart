@@ -68,7 +68,7 @@ const _template = r'''<!DOCTYPE html>
         }
         if (params.phone) config.customer.phonenumber = params.phone;
         if (params.metadata) config.meta = params.metadata;
-        if (params.description) config.payment_options = params.description;
+        if (params.description) config.customizations = Object.assign(config.customizations || {}, { description: params.description });
         if (params.paymentOptions) config.payment_options = params.paymentOptions;
         if (params.redirectUrl) config.redirect_url = params.redirectUrl;
         if (params.paymentPlan) config.payment_plan = params.paymentPlan;
