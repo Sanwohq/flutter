@@ -67,9 +67,9 @@ const _template = r'''<!DOCTYPE html>
           onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
               sanwoCallback('success', {
+                orderId: data.orderID,
                 reference: data.orderID,
                 transaction_id: data.orderID,
-                orderId: data.orderID,
                 payerId: data.payerID,
                 facilitatorAccessToken: data.facilitatorAccessToken,
                 payer: details.payer,
