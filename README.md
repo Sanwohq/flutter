@@ -89,8 +89,6 @@ Provider templates are distributed as separate packages to keep the core SDK lig
 |---------------------|--------------|-----------------------------------|
 | `sanwo_paystack`    | Paystack     | Minor (kobo)                      |
 | `sanwo_flutterwave` | Flutterwave  | Major (naira) -- auto-converted   |
-| `sanwo_stripe`      | Stripe       | Minor (cents)                     |
-| `sanwo_paypal`      | PayPal       | Major (dollars) -- auto-converted |
 | `sanwo_razorpay`    | Razorpay     | Minor (paise)                     |
 | `sanwo_monnify`     | Monnify      | Major (naira) -- auto-converted   |
 | `sanwo_interswitch` | Interswitch  | Minor (kobo)                      |
@@ -148,49 +146,6 @@ final result = await sanwo(
       'title': 'My Store',
       'logo': 'https://example.com/logo.png',
     },
-  ),
-);
-```
-
-### Stripe
-
-```dart
-import 'package:sanwo_flutter/sanwo_flutter.dart';
-import 'package:sanwo_stripe/sanwo_stripe.dart';
-
-final sanwo = Sanwo(
-  provider: stripeProvider,
-  publicKey: 'pk_test_...',
-);
-
-final result = await sanwo(
-  context: context,
-  options: CheckoutOptions(
-    amount: 5000, // $50.00 in cents
-    currency: 'USD',
-    customer: CheckoutCustomer(email: 'user@example.com'),
-    clientSecret: 'pi_xxx_secret_yyy', // from your server
-  ),
-);
-```
-
-### PayPal
-
-```dart
-import 'package:sanwo_flutter/sanwo_flutter.dart';
-import 'package:sanwo_paypal/sanwo_paypal.dart';
-
-final sanwo = Sanwo(
-  provider: paypalProvider,
-  publicKey: 'YOUR_PAYPAL_CLIENT_ID',
-);
-
-final result = await sanwo(
-  context: context,
-  options: CheckoutOptions(
-    amount: 5000, // $50.00 in cents -- auto-converted to 50.00
-    currency: 'USD',
-    customer: CheckoutCustomer(email: 'user@example.com'),
   ),
 );
 ```

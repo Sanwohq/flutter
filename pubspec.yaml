@@ -21,10 +21,6 @@ dev_dependencies:
     path: packages/sanwo_paystack
   sanwo_flutterwave:
     path: packages/sanwo_flutterwave
-  sanwo_stripe:
-    path: packages/sanwo_stripe
-  sanwo_paypal:
-    path: packages/sanwo_paypal
   sanwo_razorpay:
     path: packages/sanwo_razorpay
   sanwo_monnify:

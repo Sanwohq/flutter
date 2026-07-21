@@ -2,8 +2,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sanwo_flutter/sanwo_flutter.dart';
 import 'package:sanwo_paystack/sanwo_paystack.dart';
 import 'package:sanwo_flutterwave/sanwo_flutterwave.dart';
-import 'package:sanwo_stripe/sanwo_stripe.dart';
-import 'package:sanwo_paypal/sanwo_paypal.dart';
 import 'package:sanwo_razorpay/sanwo_razorpay.dart';
 import 'package:sanwo_monnify/sanwo_monnify.dart';
 import 'package:sanwo_interswitch/sanwo_interswitch.dart';
@@ -128,42 +126,6 @@ void main() {
         flutterwaveProvider.template,
         contains('config.payment_options = params.paymentOptions'),
       );
-    });
-  });
-
-  // ---------------------------------------------------------------------------
-  // Stripe
-  // ---------------------------------------------------------------------------
-  group('StripeProvider', () {
-    runProviderTests(
-      provider: stripeProvider,
-      expectedId: 'stripe',
-      expectedName: 'stripe',
-      expectedDisplayName: 'Stripe',
-      expectedAmountInMinorUnit: true,
-    );
-
-    test('success callback includes reference and transaction_id', () {
-      expect(stripeProvider.template, contains('reference: paymentIntent.id'));
-      expect(stripeProvider.template, contains('transaction_id: paymentIntent.id'));
-    });
-  });
-
-  // ---------------------------------------------------------------------------
-  // PayPal
-  // ---------------------------------------------------------------------------
-  group('PayPalProvider', () {
-    runProviderTests(
-      provider: paypalProvider,
-      expectedId: 'paypal',
-      expectedName: 'paypal',
-      expectedDisplayName: 'PayPal',
-      expectedAmountInMinorUnit: false,
-    );
-
-    test('success callback includes reference and transaction_id', () {
-      expect(paypalProvider.template, contains('reference: data.orderID'));
-      expect(paypalProvider.template, contains('transaction_id: data.orderID'));
     });
   });
 
