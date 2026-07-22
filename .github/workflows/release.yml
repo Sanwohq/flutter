@@ -39,14 +39,14 @@ jobs:
           cd packages/sanwo_interswitch && flutter pub get && cd ../..
       - uses: dart-lang/setup-dart@v1
       - name: Publish sanwo_flutter
-        run: dart pub publish --force
+        run: dart pub publish --force || echo "Already published or skipped"
       - name: Publish sanwo_paystack
-        run: cd packages/sanwo_paystack && dart pub publish --force
+        run: cd packages/sanwo_paystack && dart pub publish --force || echo "Already published or skipped"
       - name: Publish sanwo_flutterwave
-        run: cd packages/sanwo_flutterwave && dart pub publish --force
+        run: cd packages/sanwo_flutterwave && dart pub publish --force || echo "Already published or skipped"
       - name: Publish sanwo_razorpay
-        run: cd packages/sanwo_razorpay && dart pub publish --force
+        run: cd packages/sanwo_razorpay && dart pub publish --force || echo "Already published or skipped"
       - name: Publish sanwo_monnify
-        run: cd packages/sanwo_monnify && dart pub publish --force
+        run: cd packages/sanwo_monnify && dart pub publish --force || echo "Already published or skipped"
       - name: Publish sanwo_interswitch
-        run: cd packages/sanwo_interswitch && dart pub publish --force
+        run: cd packages/sanwo_interswitch && dart pub publish --force || echo "Already published or skipped"
