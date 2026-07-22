@@ -77,7 +77,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
           },
         ),
       )
-      ..loadHtmlString(widget.html);
+      ..loadHtmlString(widget.html, baseUrl: 'https://checkout.sanwohq.com');
   }
 
   void _onMessageReceived(JavaScriptMessage message) {
