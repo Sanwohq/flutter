@@ -26,27 +26,26 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.x'
-      - name: Resolve all dependencies
+      - name: Resolve dependencies
         run: |
           flutter pub get
-          cd packages/sanwo_paystack && flutter pub get && cd ../..
-          cd packages/sanwo_flutterwave && flutter pub get && cd ../..
-          cd packages/sanwo_razorpay && flutter pub get && cd ../..
-          cd packages/sanwo_monnify && flutter pub get && cd ../..
-          cd packages/sanwo_interswitch && flutter pub get && cd ../..
-      - uses: dart-lang/setup-dart@v1
-      - name: Publish sanwo_flutter
-        run: dart pub publish --force || echo "Already published or skipped"
-      - name: Publish sanwo_paystack
-        run: cd packages/sanwo_paystack && dart pub publish --force || echo "Already published or skipped"
-      - name: Publish sanwo_flutterwave
-        run: cd packages/sanwo_flutterwave && dart pub publish --force || echo "Already published or skipped"
-      - name: Publish sanwo_razorpay
-        run: cd packages/sanwo_razorpay && dart pub publish --force || echo "Already published or skipped"
-      - name: Publish sanwo_monnify
-        run: cd packages/sanwo_monnify && dart pub publish --force || echo "Already published or skipped"
-      - name: Publish sanwo_interswitch
-        run: cd packages/sanwo_interswitch && dart pub publish --force || echo "Already published or skipped"
+          for pkg in packages/sanwo_*; do (cd "$pkg" && flutter pub get); done
+      - name: Publish all packages
+        run: |
+          set -e
+          publish() {
+            echo "--- Publishing from $1 ---"
+            cd "$1"
+            flutter pub publish --force
+            cd "$GITHUB_WORKSPACE"
+          }
+          publish .
+          publish packages/sanwo_paystack
+          publish packages/sanwo_flutterwave
+          publish packages/sanwo_razorpay
+          publish packages/sanwo_monnify
+          publish packages/sanwo_interswitch
