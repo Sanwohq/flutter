@@ -23,6 +23,7 @@ jobs:
     needs: analyze
     if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
+    environment: publish
     permissions:
       id-token: write
     steps:
