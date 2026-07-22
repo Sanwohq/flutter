@@ -29,15 +29,24 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.29.x'
+      - name: Resolve all dependencies
+        run: |
+          flutter pub get
+          cd packages/sanwo_paystack && flutter pub get && cd ../..
+          cd packages/sanwo_flutterwave && flutter pub get && cd ../..
+          cd packages/sanwo_razorpay && flutter pub get && cd ../..
+          cd packages/sanwo_monnify && flutter pub get && cd ../..
+          cd packages/sanwo_interswitch && flutter pub get && cd ../..
+      - uses: dart-lang/setup-dart@v1
       - name: Publish sanwo_flutter
-        run: cd ${{ github.workspace }} && flutter pub publish --force
+        run: dart pub publish --force
       - name: Publish sanwo_paystack
-        run: cd ${{ github.workspace }}/packages/sanwo_paystack && flutter pub publish --force
+        run: cd packages/sanwo_paystack && dart pub publish --force
       - name: Publish sanwo_flutterwave
-        run: cd ${{ github.workspace }}/packages/sanwo_flutterwave && flutter pub publish --force
+        run: cd packages/sanwo_flutterwave && dart pub publish --force
       - name: Publish sanwo_razorpay
-        run: cd ${{ github.workspace }}/packages/sanwo_razorpay && flutter pub publish --force
+        run: cd packages/sanwo_razorpay && dart pub publish --force
       - name: Publish sanwo_monnify
-        run: cd ${{ github.workspace }}/packages/sanwo_monnify && flutter pub publish --force
+        run: cd packages/sanwo_monnify && dart pub publish --force
       - name: Publish sanwo_interswitch
-        run: cd ${{ github.workspace }}/packages/sanwo_interswitch && flutter pub publish --force
+        run: cd packages/sanwo_interswitch && dart pub publish --force
